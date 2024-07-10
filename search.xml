@@ -4,6 +4,56 @@
   
     
     <entry>
+      <title>线性判别分析LDA</title>
+      <link href="/2024/07/10/ml_3/"/>
+      <url>/2024/07/10/ml_3/</url>
+      
+        <content type="html"><![CDATA[<h1 id="线性判别分析-LDA"><a href="#线性判别分析-LDA" class="headerlink" title="线性判别分析(LDA)"></a>线性判别分析(LDA)</h1><blockquote><p>LDA根据训练集找到一条直线，使得同类样例在直线上的投影尽可能接近，异类样例的投影点尽可能远离。在对新样本进行分类时，将其投影到同样的这条直线上，再根据投影点的位置来确定新样本的类别。</p></blockquote><p>即：</p><ul><li>同类样本的方差尽可能小</li><li>异类样本的中心尽可能远</li></ul><p>在训练集上学习得到模型：<br>$$<br>    \bm{y} = \bm{w}^T \bm{x}<br>$$</p><p>$\bm{y}$ 可以看作是 $\bm{x}$ 在 $\bm{w}$ 方向上的投影。</p><p>异类样本均值在直线上的投影尽可能远：<br>$$<br>    \max | |\bm{w}| \cdot |\bm{\mu}_0| \cdot \cos \theta_0 - |\bm{w}| \cdot |\bm{\mu}_1| \cdot \cos \theta_1 |_2^2<br>$$<br>为了方便讨论，上面的式子可以写成（我们不关心 $\bm{w}$ 的大小，只是为了方便）：</p><p>$$<br>    \max | \bm{w}^T\bm{\mu}_0 - \bm{w}^T\bm{\mu}_1 |_2^2<br>$$</p><blockquote><p>正样本的中心在直线上的投影减去负样本的中心在直线上的投影分别乘以向量的模长。</p></blockquote><p>同类样本的方差尽可能小：<br>$$<br>    \min \bm{w}^T \Sigma_0 \bm{w}<br>$$</p><p>$$<br>\begin{align}<br>    \bm{w}^T \Sigma_0 \bm{w}<br>        &amp;= \bm{w}^T \left( \sum_{x \in X_0}(\bm{x}-\bm{\mu}_0)(\bm{x}-\bm{\mu}<em>0)^T \right) \bm{w} \<br>        &amp;= \sum</em>{x \in X_0} \bm{w}^T(\bm{x}-\bm{\mu}_0)(\bm{x}-\bm{\mu}<em>0)^T \bm{w} \<br>        &amp;= \sum</em>{x \in X_0} (\bm{w}^T\bm{x}-\bm{w}^T\bm{\mu}_0)(\bm{x}^T\bm{w}-\bm{\mu}_0^T\bm{w}) \<br>\end{align}<br>$$</p><p>$$<br>\newcommand{\wmu}{\bm{w}^T\bm{\mu}_0 - \bm{w}^T\bm{\mu}_1}<br>\newcommand{\uu}{\bm{\mu}_0 - \bm{\mu}_1}<br>\newcommand{\uuu}{\bm{w}^T(\Sigma_0+\Sigma_1)\bm{w}}<br>$$<br>损失函数：<br>$$</p><p>\begin{align}<br>    \max J<br>    &amp;= \frac{|\wmu|_2^2}{\bm{w}^T \Sigma_0 \bm{w} + \bm{w}^T \Sigma_1 \bm{w}} \<br>    &amp;= \frac{|(\wmu)^T|<em>2^2}{\uuu} \<br>    &amp;= \frac{|(\uu)^T\bm{w}|<em>2^2}{\uuu} \<br>    &amp;= \frac{[(\uu)^T\bm{w}]^T(\uu)^T\bm{w}}{\uuu} \<br>    &amp;= \frac{\bm{w}^T(\uu)(\uu)^T\bm{w}}{\uuu} \<br>\end{align}<br>$$<br>我们令：<br>$$<br>\begin{align}<br>    \bm{S}<em>b &amp;= (\bm{\mu_0} - \bm{\mu_1})(\bm{\mu_0} - \bm{\mu_1})^T \<br>    \bm{S}</em>{\bm{w}} &amp;= \Sigma_0 + \Sigma_1 \<br>        &amp;= \sum</em>{\bm{x} \in X_0}(\bm{x} - \bm{\mu_0})(\bm{x} - \bm{\mu_0})^T + \sum</em>{\bm{x} \in X_1}(\bm{x} - \bm{\mu_1})(\bm{x} - \bm{\mu_1})^T \</p><p>\end{align}<br>$$</p><p>那么：<br>$$<br>    \max J = \frac{\bm{w}^T\bm{S}<em>b\bm{w}}{\bm{w}^T\bm{S}</em>{\bm{w}}\bm{w}} \<br>$$</p><p>我们的优化一般是求最小值，因此：<br>$$<br>\begin{aligned}<br>    &amp;\min_{\bm{w}} \quad -\bm{w}^T S_b \bm{w} \<br>    &amp;\text{s.t.} \quad \bm{w}^T S_w \bm{w} = 1<br>\end{aligned}<br>$$</p><p>拉格朗日函数：<br>$$<br>    L(\bm{x},\bm{\lambda}) = f(\bm{x}) + \sum_{i=1}^{n}\lambda_i h_i(\bm{x})<br>$$<br>其中$\bm{\lambda}=(\lambda_1,\lambda_2,\cdots,\lambda_n)^T$是拉格朗日乘子，$h_i(\bm{x})$是约束函数。对拉格朗日函数关于$\bm{x}$求偏导，令导数为$\bm{0}$，结合约束条件求出$\bm{x}$，即为该优化问题的所有极值点。</p><p>拉格朗日函数的求解过程如下：</p><p>$$<br>\begin{aligned}<br>    &amp;\min_{\bm{w}} \quad -\bm{w}^TS_b\bm{w} \<br>    &amp;\text{s.t.} \quad \bm{w}^TS_w\bm{w} = 1 \<br>    &amp;\text{即约束条件为：} \bm{w}^TS_w\bm{w} - 1 = 0 \<br>    &amp;\text{得出拉格朗日函数：} \<br>    &amp;L(\bm{w},\bm{\lambda}) = -\bm{w}^TS_b\bm{w} + \bm{\lambda}(\bm{w}^TS_{w}\bm{w} - 1) \<br>\end{aligned}<br>$$</p><p>对 $\bm{w}$ 求偏导得：<br>$$<br>\begin{aligned}<br>    \frac{\partial L(\bm{w},\bm{\lambda})}{\partial \bm{w}} &amp;= -\frac{\partial(\bm{w}^TS_b\bm{w})}{\partial \bm{w}} + \bm{\lambda}\frac{\partial(\bm{w}^TS_w\bm{w} - 1)}{\partial \bm{w}} \<br>    &amp;= -(S_b + S_b^T)\bm{w} + \bm{\lambda}(S_w + S_w^T)\bm{w} \<br>\end{aligned}<br>$$</p><p>因为 $S_b = S_b^T,S_w = S_w^T$，所以：<br>$$<br>    \frac{\partial L(\bm{w},\bm{\lambda})}{\partial \bm{w}} = -2S_b\bm{w} + 2\bm{\lambda}S_w\bm{w}<br>$$</p><p>令上式子等于0可得到:<br>$$<br>\begin{aligned}<br>    S_b\bm{w} &amp;= \bm{\lambda}S_w\bm{w} \<br>    (\uu)(\uu)^T\bm{}w &amp;= \bm{\lambda}S_w\bm{w} \<br>\end{aligned}<br>$$</p><p>令 $(\uu)^T\bm{w} = \gamma$ 则：<br>$$<br>    \gamma(\uu) = \bm{\lambda}S_w\bm{w} \<br>    \bm{w} = \frac{\gamma}{\lambda}S_w^{-1}(\uu)<br>$$</p><blockquote><p>矩阵微分公式<br>$$<br>    f(\bm{x}) = \bm{x}^T A \bm{x} \<br>    \frac{\partial f}{\partial \bm{x}} = (A + A^T) \bm{x}<br>$$</p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> 人工智能 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 机器学习 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>对数几率回归</title>
+      <link href="/2024/07/08/ml_2/"/>
+      <url>/2024/07/08/ml_2/</url>
+      
+        <content type="html"><![CDATA[<h1 id="对数几率回归"><a href="#对数几率回归" class="headerlink" title="对数几率回归"></a>对数几率回归</h1><blockquote><p>对数几率回归算法的机器学习三要素：</p><ol><li>模型：线性模型，通过sigmoid函数将线性模型映射到概率空间，输出值的范围为 $(0,1)$</li><li>策略：极大似然估计，信息论</li><li>优化：梯度下降法、牛顿法</li></ol></blockquote><p>二分类任务的输出标记：$y \in &lt;!–swig￼0–&gt;}}<br>\newcommand{\ebxi}{e^{\beta^T\hat{\mathbf{x}}_i}}<br>$$</p><p>$$<br>    y = \frac{1}{1 + e^{-z}}<br>$$</p><p><img src="/2024/07/08/ml_2/geogebra-export.png" alt="图：对数几率函数"></p><p>这个函数的值刚好在 $(0,1)$ 之间，且 $x = 0$ 时的值是0.5。</p><p>$$<br>    \ln \left( \frac{y}{1 - y} \right) = \wx<br>$$</p><p>离散型随机变量 $y \in {0,1}$ 取值为 $1$ 和 $0$ 的概率分别建模为：<br>$$<br>\begin{align}<br>    p(y = 1 | \mathbf{x}) &amp;= \frac{1}{1 + e^{-(\wx)}} = \frac{e^{\wx}}{1+e^{\wx}} \<br>    p(y = 0 | \mathbf{x}) &amp;= 1 - p(y = 1 | \mathbf{x}) = \frac{1}{1+e^{\wx}}<br>\end{align}<br>$$</p><p>为了便于分析，令 $\beta = (\mathbf{w};b), \hat{\mathbf{x}} = (\mathbf{x};1)$，则上面的式子可以写为：</p><p>$$<br>\begin{align}<br>    p(y=1|\hat{\mathbf{x}};\beta) &amp;= \frac{\ebx}{1+\ebx} = p_1(\hat{\mathbf{x}};\beta) \<br>    p(y=0|\hat{\mathbf{x}};\beta) &amp;= \frac{1}{1+\ebx} = p_0(\hat{\mathbf{x}};\beta) \<br>\end{align}<br>$$</p><p>使用“极大似然估计”来估计 $\mathbf{w}$ 和 $b$。那么由以上概率推导出随机变量 $y \in {0,1}$ 的概率质量函数为：<br>$$<br>    p(y|\hat{\mathbf{x}};\beta) = y \cdot p_1(\hat{\mathbf{x}};\beta) + (1-y) \cdot p_0(\hat{\mathbf{x}};\beta) \<br>    或 \<br>    p(y|\hat{\mathbf{x}};\beta) = [p_1(\hat{\mathbf{x}};\beta)]^y \cdot [p_0(\hat{\mathbf{x}};\beta)]^{1-y}<br>$$</p><p>似然函数和对数似然函数：<br>$$<br>\begin{align}<br>    L(\beta) &amp;= \prod_{i=1}^{m} p(y_i|\hat{\mathbf{x}}<em>i;\beta) \<br>    \ell(\bm{\beta}) &amp;= \ln L(\beta) = \sum</em>{i=1}^{m} \ln p(y_i|\hat{\mathbf{x}}<em>i;\beta) \<br>    \ell(\bm{\beta}) &amp;= \sum</em>{i=1}^{m}\ln(y_ip_1(\hat{\mathbf{x}}_i;\beta) + (1-y_i)p_0(\hat{\mathbf{x}}_i;\beta))<br>\end{align}<br>$$</p><p>因为：<br>$$<br>\begin{align}<br>    p_1(\hat{\mathbf{x}_i};\beta) = \frac{\ebxi}{1+\ebxi} \<br>    p_0(\hat{\mathbf{x}_i};\beta) = \frac{1}{1+\ebxi}<br>\end{align}<br>$$</p><p>所以：<br>$$<br>\begin{align}<br>    \ell(\bm{\beta})<br>        &amp;= \sum_{i=1}^{m}\ln \left( \frac{y_i\ebxi}{1+\ebxi} + \frac{1-y_i}{1+\ebxi} \right) \<br>        &amp;= \sum_{i=1}^{m}\ln \left( \frac{y_i\ebxi + 1 - y_i}{1+\ebxi} \right) \<br>        &amp;= \sum_{i=1}^{m}\left( \ln \left( y_i\ebxi + 1 - y_i \right) - \ln \left( 1+\ebxi \right) \right)\<br>\end{align}<br>$$</p><p>因为 $ y_i \in {0,1} $，所以：<br>$$<br>\begin{align}<br>    \ell(\beta) &amp;=<br>    \begin{cases}<br>        \sum_{i=1}^{m} \left( - \ln \left( 1+\ebxi \right) \right), &amp; y_i = 0 \<br>        \sum_{i=1}^{m} \left( \beta^T\hat{\mathbf{x}_i} - \ln\left( 1+\ebxi \right) \right), &amp; y_i = 1 \<br>    \end{cases} \</p><pre><code>\ell(\beta) &amp;= \sum_{i=1}^{m}\left( y_i\beta^T\hat{\mathbf{x}_i} - \ln\left( 1+\ebxi \right) \right) \\</code></pre><p>\end{align}<br>$$</p><p>因为损失函数通常是以最小化为优化目标，因此可以将最大化 $\ell(\beta)$ 转换为最小化 $\ell(\beta)$的相反数 $-\ell(\beta)$。</p><p>此外还可以根据信息论进行推导。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 人工智能 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 机器学习 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>线性回归</title>
       <link href="/2024/07/07/ml_1/"/>
       <url>/2024/07/07/ml_1/</url>

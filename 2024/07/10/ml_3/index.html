@@ -4,8 +4,13 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="算法基础-冒泡排序, 王笑宇">
-    <meta name="description" content="冒泡排序1.2.3.">
+    <meta name="keywords" content="线性判别分析LDA, 王笑宇">
+    <meta name="description" content="线性判别分析(LDA)
+LDA根据训练集找到一条直线，使得同类样例在直线上的投影尽可能接近，异类样例的投影点尽可能远离。在对新样本进行分类时，将其投影到同样的这条直线上，再根据投影点的位置来确定新样本的类别。
+
+即：
+
+同类样本的方差尽可能">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +22,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>算法基础-冒泡排序 | 王笑宇</title>
+    <title>线性判别分析LDA | 王笑宇</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     
 
@@ -229,12 +234,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">算法基础-冒泡排序</h1>
+                    <h1 class="description center-align post-title">线性判别分析LDA</h1>
                 </div>
             </div>
         </div>
@@ -258,14 +263,23 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E7%AE%97%E6%B3%95/">
-                                <span class="chip bg-color">算法</span>
+                            <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">
+                                <span class="chip bg-color">机器学习</span>
                             </a>
                         
                     </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" class="post-category">
+                                人工智能
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -274,28 +288,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-11-28
+                    2024-07-10
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-11-29
+                    2024-07-10
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    7
+                    927
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    4 分
                 </div>
                 
 
@@ -318,7 +332,39 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h1><h2 id="1"><a href="#1" class="headerlink" title="1."></a>1.</h2><h2 id="2"><a href="#2" class="headerlink" title="2."></a>2.</h2><h2 id="3"><a href="#3" class="headerlink" title="3."></a>3.</h2>
+                <h1 id="线性判别分析-LDA"><a href="#线性判别分析-LDA" class="headerlink" title="线性判别分析(LDA)"></a>线性判别分析(LDA)</h1><blockquote>
+<p>LDA根据训练集找到一条直线，使得同类样例在直线上的投影尽可能接近，异类样例的投影点尽可能远离。在对新样本进行分类时，将其投影到同样的这条直线上，再根据投影点的位置来确定新样本的类别。</p>
+</blockquote>
+<p>即：</p>
+<ul>
+<li>同类样本的方差尽可能小</li>
+<li>异类样本的中心尽可能远</li>
+</ul>
+<p>在训练集上学习得到模型：<br>$$<br>    \bm{y} = \bm{w}^T \bm{x}<br>$$</p>
+<p>$\bm{y}$ 可以看作是 $\bm{x}$ 在 $\bm{w}$ 方向上的投影。</p>
+<p>异类样本均值在直线上的投影尽可能远：<br>$$<br>    \max | |\bm{w}| \cdot |\bm{\mu}_0| \cdot \cos \theta_0 - |\bm{w}| \cdot |\bm{\mu}_1| \cdot \cos \theta_1 |_2^2<br>$$<br>为了方便讨论，上面的式子可以写成（我们不关心 $\bm{w}$ 的大小，只是为了方便）：</p>
+<p>$$<br>    \max | \bm{w}^T\bm{\mu}_0 - \bm{w}^T\bm{\mu}_1 |_2^2<br>$$</p>
+<blockquote>
+<p>正样本的中心在直线上的投影减去负样本的中心在直线上的投影分别乘以向量的模长。</p>
+</blockquote>
+<p>同类样本的方差尽可能小：<br>$$<br>    \min \bm{w}^T \Sigma_0 \bm{w}<br>$$</p>
+<p>$$<br>\begin{align}<br>    \bm{w}^T \Sigma_0 \bm{w}<br>        &amp;= \bm{w}^T \left( \sum_{x \in X_0}(\bm{x}-\bm{\mu}_0)(\bm{x}-\bm{\mu}<em>0)^T \right) \bm{w} \<br>        &amp;= \sum</em>{x \in X_0} \bm{w}^T(\bm{x}-\bm{\mu}_0)(\bm{x}-\bm{\mu}<em>0)^T \bm{w} \<br>        &amp;= \sum</em>{x \in X_0} (\bm{w}^T\bm{x}-\bm{w}^T\bm{\mu}_0)(\bm{x}^T\bm{w}-\bm{\mu}_0^T\bm{w}) \<br>\end{align}<br>$$</p>
+<p>$$<br>\newcommand{\wmu}{\bm{w}^T\bm{\mu}_0 - \bm{w}^T\bm{\mu}_1}<br>\newcommand{\uu}{\bm{\mu}_0 - \bm{\mu}_1}<br>\newcommand{\uuu}{\bm{w}^T(\Sigma_0+\Sigma_1)\bm{w}}<br>$$<br>损失函数：<br>$$</p>
+<p>\begin{align}<br>    \max J<br>    &amp;= \frac{|\wmu|_2^2}{\bm{w}^T \Sigma_0 \bm{w} + \bm{w}^T \Sigma_1 \bm{w}} \<br>    &amp;= \frac{|(\wmu)^T|<em>2^2}{\uuu} \<br>    &amp;= \frac{|(\uu)^T\bm{w}|<em>2^2}{\uuu} \<br>    &amp;= \frac{[(\uu)^T\bm{w}]^T(\uu)^T\bm{w}}{\uuu} \<br>    &amp;= \frac{\bm{w}^T(\uu)(\uu)^T\bm{w}}{\uuu} \<br>\end{align}<br>$$<br>我们令：<br>$$<br>\begin{align}<br>    \bm{S}<em>b &amp;= (\bm{\mu_0} - \bm{\mu_1})(\bm{\mu_0} - \bm{\mu_1})^T \<br>    \bm{S}</em>{\bm{w}} &amp;= \Sigma_0 + \Sigma_1 \<br>        &amp;= \sum</em>{\bm{x} \in X_0}(\bm{x} - \bm{\mu_0})(\bm{x} - \bm{\mu_0})^T + \sum</em>{\bm{x} \in X_1}(\bm{x} - \bm{\mu_1})(\bm{x} - \bm{\mu_1})^T \</p>
+<p>\end{align}<br>$$</p>
+<p>那么：<br>$$<br>    \max J = \frac{\bm{w}^T\bm{S}<em>b\bm{w}}{\bm{w}^T\bm{S}</em>{\bm{w}}\bm{w}} \<br>$$</p>
+<p>我们的优化一般是求最小值，因此：<br>$$<br>\begin{aligned}<br>    &amp;\min_{\bm{w}} \quad -\bm{w}^T S_b \bm{w} \<br>    &amp;\text{s.t.} \quad \bm{w}^T S_w \bm{w} = 1<br>\end{aligned}<br>$$</p>
+<p>拉格朗日函数：<br>$$<br>    L(\bm{x},\bm{\lambda}) = f(\bm{x}) + \sum_{i=1}^{n}\lambda_i h_i(\bm{x})<br>$$<br>其中$\bm{\lambda}=(\lambda_1,\lambda_2,\cdots,\lambda_n)^T$是拉格朗日乘子，$h_i(\bm{x})$是约束函数。对拉格朗日函数关于$\bm{x}$求偏导，令导数为$\bm{0}$，结合约束条件求出$\bm{x}$，即为该优化问题的所有极值点。</p>
+<p>拉格朗日函数的求解过程如下：</p>
+<p>$$<br>\begin{aligned}<br>    &amp;\min_{\bm{w}} \quad -\bm{w}^TS_b\bm{w} \<br>    &amp;\text{s.t.} \quad \bm{w}^TS_w\bm{w} = 1 \<br>    &amp;\text{即约束条件为：} \bm{w}^TS_w\bm{w} - 1 = 0 \<br>    &amp;\text{得出拉格朗日函数：} \<br>    &amp;L(\bm{w},\bm{\lambda}) = -\bm{w}^TS_b\bm{w} + \bm{\lambda}(\bm{w}^TS_{w}\bm{w} - 1) \<br>\end{aligned}<br>$$</p>
+<p>对 $\bm{w}$ 求偏导得：<br>$$<br>\begin{aligned}<br>    \frac{\partial L(\bm{w},\bm{\lambda})}{\partial \bm{w}} &amp;= -\frac{\partial(\bm{w}^TS_b\bm{w})}{\partial \bm{w}} + \bm{\lambda}\frac{\partial(\bm{w}^TS_w\bm{w} - 1)}{\partial \bm{w}} \<br>    &amp;= -(S_b + S_b^T)\bm{w} + \bm{\lambda}(S_w + S_w^T)\bm{w} \<br>\end{aligned}<br>$$</p>
+<p>因为 $S_b = S_b^T,S_w = S_w^T$，所以：<br>$$<br>    \frac{\partial L(\bm{w},\bm{\lambda})}{\partial \bm{w}} = -2S_b\bm{w} + 2\bm{\lambda}S_w\bm{w}<br>$$</p>
+<p>令上式子等于0可得到:<br>$$<br>\begin{aligned}<br>    S_b\bm{w} &amp;= \bm{\lambda}S_w\bm{w} \<br>    (\uu)(\uu)^T\bm{}w &amp;= \bm{\lambda}S_w\bm{w} \<br>\end{aligned}<br>$$</p>
+<p>令 $(\uu)^T\bm{w} = \gamma$ 则：<br>$$<br>    \gamma(\uu) = \bm{\lambda}S_w\bm{w} \<br>    \bm{w} = \frac{\gamma}{\lambda}S_w^{-1}(\uu)<br>$$</p>
+<blockquote>
+<p>矩阵微分公式<br>$$<br>    f(\bm{x}) = \bm{x}^T A \bm{x} \<br>    \frac{\partial f}{\partial \bm{x}} = (A + A^T) \bm{x}<br>$$</p>
+</blockquote>
+
                 
             </div>
             <hr/>
@@ -344,7 +390,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://CoderKingXY.github.io/2022/11/28/suan_fa_ji_chu_mou_pao_pai_xu/">http://CoderKingXY.github.io/2022/11/28/suan_fa_ji_chu_mou_pao_pai_xu/</a>
+                    <a href="http://CoderKingXY.github.io/2024/07/10/ml_3/">http://CoderKingXY.github.io/2024/07/10/ml_3/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -382,8 +428,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E7%AE%97%E6%B3%95/">
-                                    <span class="chip bg-color">算法</span>
+                                <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">
+                                    <span class="chip bg-color">机器学习</span>
                                 </a>
                             
                         </div>
@@ -459,66 +505,18 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2022/11/29/mac_huan_jing_da_jian_ji_yu_hexo_de_ge_ren_bo_ke_zhi_nan/">
+                <a href="/2024/07/10/ml_3/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Mac环境搭建基于Hexo的个人博客指南">
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="线性判别分析LDA">
                         
-                        <span class="card-title">Mac环境搭建基于Hexo的个人博客指南</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-11-29
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E5%B0%8F%E6%8A%80%E8%83%BD/" class="post-category">
-                                    小技能
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/Hexo/">
-                        <span class="chip bg-color">Hexo</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
-            </div>
-            <div class="card">
-                <a href="/2022/11/28/suan_fa_ji_chu_mou_pao_pai_xu/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="算法基础-冒泡排序">
-                        
-                        <span class="card-title">算法基础-冒泡排序</span>
+                        <span class="card-title">线性判别分析LDA</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -529,12 +527,16 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-11-28
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-07-10
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            王笑宇
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" class="post-category">
+                                    人工智能
+                                </a>
+                            
                             
                         </span>
                     </div>
@@ -543,8 +545,57 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E7%AE%97%E6%B3%95/">
-                        <span class="chip bg-color">算法</span>
+                    <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">
+                        <span class="chip bg-color">机器学习</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2024/07/08/ml_2/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="对数几率回归">
+                        
+                        <span class="card-title">对数几率回归</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-07-08
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" class="post-category">
+                                    人工智能
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">
+                        <span class="chip bg-color">机器学习</span>
                     </a>
                     
                 </div>
