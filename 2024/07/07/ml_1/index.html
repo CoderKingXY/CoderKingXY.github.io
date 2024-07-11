@@ -291,7 +291,7 @@ $$\begin{align}">
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2024-07-07
+                    2024-07-10
                 </div>
                 
 
@@ -335,10 +335,10 @@ $$\begin{align}">
 <p>\frac{\partial E_{(w, b)}}{\partial b}<br>    &amp;= \frac{\partial}{\partial b}[\sum_{i=1}^{m}(y_i-wx_i-b)^2] \<br>    &amp;= \sum_{i=1}^{m} \frac{\partial}{\partial b}(y_i-wx_i-b)^2 \<br>    &amp;= \sum_{i=1}^{m} 2(y_i-wx_i-b)(-1) \<br>    &amp;= \sum_{i=1}^{m} 2(b-y_i+wx_i) \<br>    &amp;= 2(\sum_{i=1}^{m}b-\sum_{i=1}^{m}y_i+\sum_{i=1}^{m}wx_i) \<br>    &amp;= 2(mb - \sum_{i=1}^{m}(y_i-wx_i)) \</p>
 <p>\end{align}<br>$$</p>
 <p>根据$\frac{\partial E_{(w, b)}}{\partial w} =0$和$\frac{\partial E_{(w, b)}}{\partial b}=0$即可求出参数$w和b$。</p>
-<h2 id="多元线性回归"><a href="#多元线性回归" class="headerlink" title="多元线性回归"></a>多元线性回归</h2><p>如果有多个特征，那么线性回归的模型可以写成：<br>$$<br>    f(x_i) = \mathbf{w}^T\mathbf{x_i} + b<br>$$</p>
-<p>类似的，利用最小二乘法对参数$\mathbf{w}$进行估计。</p>
-<p>$$<br>\begin{align}<br>    (\mathbf{w}^*, b^*)<br>        &amp;= \arg\min_{(\mathbf{w}, b)} \sum_{i=1}^m (f(x_i) - y_i)^2 \<br>        &amp;= \arg\min_{(\mathbf{w}, b)} \sum_{i=1}^m (y_i - f(x_i))^2 \<br>        &amp;= \arg\min_{(\mathbf{w}, b)} \sum_{i=1}^m (y_i - (\mathbf{w}^T\mathbf{x_i} + b))^2<br>\end{align}<br>$$</p>
-<p>为了计算方便，我们做以下替换：<br>$$<br>\begin{align}<br>    \hat{\mathbf{w}} &amp;= \begin{pmatrix}<br>                            w_1 \<br>                            w_2 \<br>                            \vdots \<br>                            w_d \<br>                            b<br>                        \end{pmatrix} \<br>                        \<br>    \hat{\mathbf{x_i}} &amp;= \begin{pmatrix}<br>                            \mathbf{x_{i1}} \<br>                            \mathbf{x_{i2}} \<br>                            \vdots \<br>                            \mathbf{x_{id}} \<br>                            1<br>                          \end{pmatrix}<br>    \</p>
+<h2 id="多元线性回归"><a href="#多元线性回归" class="headerlink" title="多元线性回归"></a>多元线性回归</h2><p>如果有多个特征，那么线性回归的模型可以写成：<br>$$<br>    f(x_i) = \bm{w}^T\bm{x_i} + b<br>$$</p>
+<p>类似的，利用最小二乘法对参数$\bm{w}$进行估计。</p>
+<p>$$<br>\begin{align}<br>    (\bm{w}^*, b^*)<br>        &amp;= \arg\min_{(\bm{w}, b)} \sum_{i=1}^m (f(x_i) - y_i)^2 \<br>        &amp;= \arg\min_{(\bm{w}, b)} \sum_{i=1}^m (y_i - f(x_i))^2 \<br>        &amp;= \arg\min_{(\bm{w}, b)} \sum_{i=1}^m (y_i - (\bm{w}^T\bm{x_i} + b))^2<br>\end{align}<br>$$</p>
+<p>为了计算方便，我们做以下替换：<br>$$<br>\begin{align}<br>    \hat{\bm{w}} &amp;= \begin{pmatrix}<br>                            w_1 \<br>                            w_2 \<br>                            \vdots \<br>                            w_d \<br>                            b<br>                        \end{pmatrix} \<br>                        \<br>    \hat{\bm{x_i}} &amp;= \begin{pmatrix}<br>                            \bm{x_{i1}} \<br>                            \bm{x_{i2}} \<br>                            \vdots \<br>                            \bm{x_{id}} \<br>                            1<br>                          \end{pmatrix}<br>    \</p>
 <pre><code>f(x_i) &amp;= \begin{pmatrix} w_1 &amp; w_2 &amp; \cdots &amp; w_d &amp; w_{d+1}\end{pmatrix}
          \begin{pmatrix} x_{i1} \\
                         x_{i2} \\
@@ -346,13 +346,13 @@ $$\begin{align}">
                         x_{id} \\
                         1
          \end{pmatrix} \\
-f(\hat{\mathbf{x_i}}) &amp;= \hat{\mathbf{w}}^T \hat{\mathbf{x_i}}
+f(\hat{\bm{x_i}}) &amp;= \hat{\bm{w}}^T \hat{\bm{x_i}}
 </code></pre>
 <p>\end{align}<br>$$</p>
-<p>因此，我们可以得到：<br>$$<br>\begin{align}<br>    \hat{\mathbf{w}}^* &amp;= \arg\min_{\hat{\mathbf{w}}} \sum_{i=1}^m (y_i - \hat{\mathbf{w}}^T\hat{\mathbf{x_i}})^2 \<br>    &amp;= \arg\min_{\hat{\mathbf{w}}} \sum_{i=1}^m (y_i - \hat{\mathbf{x_i}}^T\hat{\mathbf{w}})^2 \<br>    &amp;= \arg\min_{\hat{\mathbf{w}}}<br>        \begin{pmatrix}<br>        y_1 - \hat{\mathbf{x_1}}^T\hat{\mathbf{w}}, &amp;<br>        \cdots, &amp;<br>        y_m - \hat{\mathbf{x_m}}^T\hat{\mathbf{w}}<br>        \end{pmatrix}<br>        \begin{pmatrix}<br>        y_1 - \mathbf{\hat{x_1}^T\hat{w}} \<br>        \vdots \<br>        y_m - \mathbf{\hat{x_m}^T\hat{w}} \<br>        \end{pmatrix} \<br>    &amp;= \arg\min_{\hat{\mathbf{w}}}(\mathbf{y}-\mathbf{X\hat{w}})^T(\mathbf{y}-\mathbf{X\hat{w}}) \<br>\end{align}<br>$$<br>其中，<br>$$<br>\begin{align}<br>    \mathbf{X} &amp;= \begin{pmatrix}<br>    x_{11} &amp; x_{12} &amp; \cdots &amp; x_{1d}  &amp; 1 \<br>    \vdots &amp; \vdots &amp; \ddots &amp; \vdots &amp; \vdots \<br>    x_{m1} &amp; x_{m2} &amp; \cdots &amp; x_{md}  &amp; 1 \<br>    \end{pmatrix} \<br>    &amp;= \begin{pmatrix}<br>    \mathbf{x}_1^T  \<br>    \vdots \<br>    \mathbf{x}_m^T<br>    \end{pmatrix}<br>\end{align}<br>$$</p>
-<p>令<br>$$<br>\begin{align}<br>    E_{\hat{\mathbf{w}}} &amp;= (\mathbf{y}-\mathbf{X\hat{w}})^T(\mathbf{y}-\mathbf{X\hat{w}})<br>\end{align}<br>$$<br>对$\hat{\mathbf{w}}$求导，得<br>$$<br>    \frac{\partial E_{\hat{\mathbf{w}}}}{\partial \hat{\mathbf{w}}} = 2\mathbf{X}^T(\mathbf{X\hat{w}}-\mathbf{y})<br>$$</p>
+<p>因此，我们可以得到：<br>$$<br>\begin{align}<br>    \hat{\bm{w}}^* &amp;= \arg\min_{\hat{\bm{w}}} \sum_{i=1}^m (y_i - \hat{\bm{w}}^T\hat{\bm{x_i}})^2 \<br>    &amp;= \arg\min_{\hat{\bm{w}}} \sum_{i=1}^m (y_i - \hat{\bm{x_i}}^T\hat{\bm{w}})^2 \<br>    &amp;= \arg\min_{\hat{\bm{w}}}<br>        \begin{pmatrix}<br>        y_1 - \hat{\bm{x_1}}^T\hat{\bm{w}}, &amp;<br>        \cdots, &amp;<br>        y_m - \hat{\bm{x_m}}^T\hat{\bm{w}}<br>        \end{pmatrix}<br>        \begin{pmatrix}<br>        y_1 - \bm{\hat{x_1}^T\hat{w}} \<br>        \vdots \<br>        y_m - \bm{\hat{x_m}^T\hat{w}} \<br>        \end{pmatrix} \<br>    &amp;= \arg\min_{\hat{\bm{w}}}(\bm{y}-\bm{X\hat{w}})^T(\bm{y}-\bm{X\hat{w}}) \<br>\end{align}<br>$$<br>其中，<br>$$<br>\begin{align}<br>    \bm{X} &amp;= \begin{pmatrix}<br>    x_{11} &amp; x_{12} &amp; \cdots &amp; x_{1d}  &amp; 1 \<br>    \vdots &amp; \vdots &amp; \ddots &amp; \vdots &amp; \vdots \<br>    x_{m1} &amp; x_{m2} &amp; \cdots &amp; x_{md}  &amp; 1 \<br>    \end{pmatrix} \<br>    &amp;= \begin{pmatrix}<br>    \bm{x}_1^T  \<br>    \vdots \<br>    \bm{x}_m^T<br>    \end{pmatrix}<br>\end{align}<br>$$</p>
+<p>令<br>$$<br>\begin{align}<br>    E_{\hat{\bm{w}}} &amp;= (\bm{y}-\bm{X\hat{w}})^T(\bm{y}-\bm{X\hat{w}})<br>\end{align}<br>$$<br>对$\hat{\bm{w}}$求导，得<br>$$<br>    \frac{\partial E_{\hat{\bm{w}}}}{\partial \hat{\bm{w}}} = 2\bm{X}^T(\bm{X\hat{w}}-\bm{y})<br>$$</p>
 <p>当上面的式子为0时，可求得参数<br>$$</p>
-<p>\hat{\mathbf{w}} = (\mathbf{X}^T\mathbf{X})^{-1} \mathbf{X}^T \mathbf{y}</p>
+<p>\hat{\bm{w}} = (\bm{X}^T\bm{X})^{-1} \bm{X}^T \bm{y}</p>
 <p>$$</p>
 
                 
@@ -764,7 +764,7 @@ f(\hat{\mathbf{x_i}}) &amp;= \hat{\mathbf{w}}^T \hat{\mathbf{x_i}}
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">5.6k</span>
+                        class="white-color">7.1k</span>
             
             
             

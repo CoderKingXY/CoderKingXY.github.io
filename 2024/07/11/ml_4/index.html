@@ -4,8 +4,10 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Mac环境搭建基于Hexo的个人博客指南, 王笑宇">
-    <meta name="description" content="前言写博客早已是众多技术爱好者们积累知识、分享知识的一个途径。国内有很多不错的写作平台，也许你也会像我一样纠结该去哪里写。而搭建一个属于自己的博客平台，根据自己的喜好突出自己的风格，或许不失为一种更好的选择。类似的教程有很多，但是都不够全面">
+    <meta name="keywords" content="决策树, 王笑宇">
+    <meta name="description" content="决策树不同于线性模型，决策树是一种树形模型，其学习目标就是通过构建决策树来预测目标变量。决策树的算法是通过递归的方式将数据集划分为更小的子集，并在每个步骤上选择最佳的划分方式来构建一个树形模型。其基本步骤如下：
+
+选择最佳划分点：在每个节点">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +19,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Mac环境搭建基于Hexo的个人博客指南 | 王笑宇</title>
+    <title>决策树 | 王笑宇</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     
 
@@ -229,12 +231,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Mac环境搭建基于Hexo的个人博客指南</h1>
+                    <h1 class="description center-align post-title">决策树</h1>
                 </div>
             </div>
         </div>
@@ -258,8 +260,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Hexo/">
-                                <span class="chip bg-color">Hexo</span>
+                            <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">
+                                <span class="chip bg-color">机器学习</span>
                             </a>
                         
                     </div>
@@ -270,8 +272,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E5%B0%8F%E6%8A%80%E8%83%BD/" class="post-category">
-                                小技能
+                            <a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" class="post-category">
+                                人工智能
                             </a>
                         
                     </div>
@@ -283,28 +285,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-11-29
+                    2024-07-11
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2024-07-03
+                    2024-07-11
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.9k
+                    1.6k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    6 分
+                    5 分
                 </div>
                 
 
@@ -327,116 +329,46 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>写博客早已是众多技术爱好者们积累知识、分享知识的一个途径。国内有很多不错的写作平台，也许你也会像我一样纠结该去哪里写。而搭建一个属于自己的博客平台，根据自己的喜好突出自己的风格，或许不失为一种更好的选择。类似的教程有很多，但是都不够全面或者是版本老旧已经无法按照文中流程顺利部署。本文从头到尾按照先本地部署后服务端部署的思路，一步步讲解搭建流程，希望读者能够有所收获。如有错误还请不吝赐教。</p>
+                <h1 id="决策树"><a href="#决策树" class="headerlink" title="决策树"></a>决策树</h1><p>不同于线性模型，决策树是一种树形模型，其学习目标就是通过构建决策树来预测目标变量。决策树的算法是通过递归的方式将数据集划分为更小的子集，并在每个步骤上选择最佳的划分方式来构建一个树形模型。其基本步骤如下：</p>
+<ol>
+<li>选择最佳划分点：在每个节点上选择一个属性和一个属性值，使得划分后的子集更加纯净（包含相同类别的样本尽可能多）</li>
+<li>划分数据集：根据选择的属性和属性值将数据集划分为两个子集</li>
+<li>递归构建子树：对每个子集重复执行步骤1和步骤2，直到每个子集不再包含多个类别或者满足停止条件</li>
+</ol>
+<p>伪代码：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">算法<span class="token punctuation">:</span> 决策树
+输入<span class="token punctuation">:</span> 数据集<span class="token punctuation">,</span> 属性集
+输出<span class="token punctuation">:</span> 决策树
+
+<span class="token number">1.</span> 创建根节点
+<span class="token number">2.</span> 如果所有样例都在同一个类别，则返回根节点作为叶子节点，并标记为该类别标签。
+<span class="token number">3.</span> 如果属性集为空或者所有样本在所有属性上取值相同，则返回根节点作为叶子节点，并标记为数据集中出现次数最多的类别标签。
+<span class="token number">4.</span> 选择最适合的属性A，使用选择标准（如信息增益、基尼指数）
+<span class="token number">5.</span> 遍历属性A的所有可能的值v<span class="token punctuation">:</span>
+    a<span class="token punctuation">.</span> 创建新的节点
+    b<span class="token punctuation">.</span> 根据选择的属性值v，将数据集划分为两个子集。
+    c<span class="token punctuation">.</span> 递归调用算法，传入子集和剩余的属性集。
+<span class="token number">6.</span> 返回根节点。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+<p><strong>自信息：</strong><br>$$<br>    I(X) = - \log_bp{\bm{(x)}}<br>$$<br>当 $b=2$ 时，单位为bit，当 $b=e$ 时，单位为nat。<br>信息熵就是自信息的期望，用来随机变量X的不确定性，信息熵越大越不确定。其公式表示为(离散型)：<br>$$<br>    H(X) = E[I(X)] = - \sum_{x} p(x) \log_bp(x)<br>$$</p>
+<p><strong>样本集合的信息熵：</strong><br>$$<br>    Ent(D) = - \sum_{k=1}^{|y|}p_k \log_2p_k<br>$$<br>其中，$p_k$表示类别$k$的概率（$k=1,2,\cdots,|y|$），$|y|$表示类别的个数。最小值为0，最大值为 $\log_2|y|$。<br>在此情形下，信息熵所代表的“不确定性”理解为样本集合样本的“纯度”。</p>
+<p><strong>条件熵</strong><br>$$<br>\begin{aligned}<br>    H(Y|X) &amp;= - \sum_{x} p(x) \sum_{y} p(y|x) \log_bp(y|x) \<br>           &amp;= - \sum_{x} p(x) H(Y|X=x)<br>\end{aligned}<br>$$<br>条件熵表示在已知 $X$ 的条件下，$Y$ 的不确定性。<br>从单个属性的角度来看，假设属性$a$的可能取值有 ${a^1, a^2, …, a^v}$, $D^v$ 表示属性 $a$ 取值为$a^v$ 的样本集合。$\frac{|D^v|}{D}$ 表示属性$a$取值为$a^v$的样本占比，那么已知属性 $a$ 的取值后，样本集合$D$的条件熵为：<br>$$<br>    \sum_{v=1}^{V} \frac{|D^v|}{D}Ent(D^v)<br>$$</p>
 <blockquote>
-<p>Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。</p>
-</blockquote>
-<p> 环境：<code>macOS Monterey</code> <code>14.0</code> <code>Apple M1</code></p>
-<h1 id="一、使用命令行安装相关程序"><a href="#一、使用命令行安装相关程序" class="headerlink" title="一、使用命令行安装相关程序"></a>一、使用命令行安装相关程序</h1><blockquote>
-<p>可以先通过<code>which</code>命令查看一下是否安装过某个命令行程序，比如<code>which brew</code>,该命令会返回某程序的安装路径。</p>
-</blockquote>
-<p><img src="/2022/11/29/mac_huan_jing_da_jian_ji_yu_hexo_de_ge_ren_bo_ke_zhi_nan/which%E5%91%BD%E4%BB%A4%E6%A3%80%E6%9F%A5%E6%98%AF%E5%90%A6%E5%AE%89%E8%A3%85brew.png" alt="查看brew安装路径"><br><img src="/2022/11/29/mac_huan_jing_da_jian_ji_yu_hexo_de_ge_ren_bo_ke_zhi_nan/which%E5%91%BD%E4%BB%A4%E6%A3%80%E6%9F%A5%E6%98%AF%E5%90%A6%E5%AE%89%E8%A3%85git.png" alt="查看git安装路径"></p>
-<h2 id="1-安装homebrew"><a href="#1-安装homebrew" class="headerlink" title="1.安装homebrew"></a>1.安装homebrew</h2><p>强烈<strong>推荐使用homebrew</strong>管理Mac上的应用程序。一般Mac环境下的程序包都可以通过brew进行安装或者删除。下文中提到的node，不推荐使用官方的方式安装，否则删除的时候不是很方便。</p>
-<h2 id="2-安装git"><a href="#2-安装git" class="headerlink" title="2.安装git"></a>2.安装git</h2><p>略</p>
-<h2 id="3-安装node"><a href="#3-安装node" class="headerlink" title="3.安装node"></a>3.安装node</h2><p>使用brew安装程序非常简单，如：<code>brew install node</code><br><img src="/2022/11/29/mac_huan_jing_da_jian_ji_yu_hexo_de_ge_ren_bo_ke_zhi_nan/%E4%BD%BF%E7%94%A8brew%E5%AE%89%E8%A3%85node.png" alt="使用brew安装node"></p>
-<p>查看是否已经安装成功：<code>node -v</code> <code>npm -v</code>。node安装成功后会有两个程序被安装，可以通过<code>node</code>和<code>npm</code>指令进行验证。</p>
-<blockquote>
-<p>npm是Node.js自带的一个包管理工具，类似brew。</p>
-</blockquote>
-<p><img src="/2022/11/29/mac_huan_jing_da_jian_ji_yu_hexo_de_ge_ren_bo_ke_zhi_nan/%E6%9F%A5%E7%9C%8Bnode%E7%89%88%E6%9C%AC.png" alt="查看node和npm版本，验证是否安装成功"></p>
-<p> 如果命令可以正常执行，能够正常显示出版本号，说明该程序已经安装成功。</p>
-<h2 id="3-安装Hexo"><a href="#3-安装Hexo" class="headerlink" title="3.安装Hexo"></a>3.安装Hexo</h2><p>执行命令：<code>brew install hexo</code><br>同样的，执行命令查看一下版本，验证是否安装成功：<code>hexo -v</code>或者<code>hexo version</code></p>
-<p><img src="/2022/11/29/mac_huan_jing_da_jian_ji_yu_hexo_de_ge_ren_bo_ke_zhi_nan/%E6%9F%A5%E7%9C%8Bhexo%E7%89%88%E6%9C%AC.png" alt="查看hexo版本"></p>
-<h1 id="二、本地调试"><a href="#二、本地调试" class="headerlink" title="二、本地调试"></a>二、本地调试</h1><p>经过以上步骤，我们已经完成了一部分搭建工作，可以先在本地验证一下是否能够正常工作。</p>
-<h2 id="1-切换到你将来准备存放博客相关内容的目录下，在这里笔者选择放在～-Documents-。"><a href="#1-切换到你将来准备存放博客相关内容的目录下，在这里笔者选择放在～-Documents-。" class="headerlink" title="1. 切换到你将来准备存放博客相关内容的目录下，在这里笔者选择放在～/Documents/。"></a>1. 切换到你将来准备存放博客相关内容的目录下，在这里笔者选择放在<code>～/Documents/</code>。</h2><ul>
-<li>执行命令：<code>cd ~/Documents/</code></li>
-<li>执行命令：<code>hexo init MyBlog</code></li>
-</ul>
-<p> <code>MyBlog</code>是随便起的，你可以根据你的意图起其他名称。命令执行后会在当前目录下创建出一个名为<code>MyBlog</code>的文件夹，该文件夹内会存放生成博客静态网页的所有相关文件，例如配置文件、博客原文、样式代码等等。</p>
-<p>执行命令后文件夹内容如图：<br><img src="/2022/11/29/mac_huan_jing_da_jian_ji_yu_hexo_de_ge_ren_bo_ke_zhi_nan/MyBlog%E5%86%85%E5%AE%B9.png" alt="MyBlog文件夹内容"></p>
-<h2 id="2-开启本地服务器。默认情况下，访问网址为：-http-localhost-4000-。"><a href="#2-开启本地服务器。默认情况下，访问网址为：-http-localhost-4000-。" class="headerlink" title="2. 开启本地服务器。默认情况下，访问网址为： http://localhost:4000/。"></a>2. 开启本地服务器。默认情况下，访问网址为： <a target="_blank" rel="noopener" href="http://localhost:4000/%E3%80%82">http://localhost:4000/。</a></h2><ul>
-<li>执行命令：<code>hexo s</code>或者<code>hexo server</code>（下文中使用前者）</li>
-</ul>
-<p>此时打开浏览器，输入<code>http://localhost:4000/</code>，不出意外会显示一个示例页面。</p>
-<p><img src="/2022/11/29/mac_huan_jing_da_jian_ji_yu_hexo_de_ge_ren_bo_ke_zhi_nan/%E6%9C%AC%E5%9C%B0%E6%9C%8D%E5%8A%A1%E5%BC%80%E5%90%AF.png" alt="开启本地服务"></p>
-<p>如果能够正常流量默认页面（如上图），说明本地服务已经可以正常工作。</p>
-<h1 id="三、部署至GitHub-Pages"><a href="#三、部署至GitHub-Pages" class="headerlink" title="三、部署至GitHub Pages"></a>三、部署至<code>GitHub Pages</code></h1><p>恭喜你能够顺利完成以上步骤，至此我们可以尝试通过GitHub网站提供的服务进行个人博客建站。</p>
-<blockquote>
-<p>如果你还没有GitHub账号，建议你<a target="_blank" rel="noopener" href="https://github.com/">注册一个</a>。</p>
-</blockquote>
-<h2 id="1-在GitHub上新建仓库，仓库名为-github-io，其中username为github登陆账号的用户名。"><a href="#1-在GitHub上新建仓库，仓库名为-github-io，其中username为github登陆账号的用户名。" class="headerlink" title="1. 在GitHub上新建仓库，仓库名为<username>.github.io，其中username为github登陆账号的用户名。"></a>1. 在GitHub上新建仓库，仓库名为<code>&lt;username&gt;.github.io</code>，其中<code>username</code>为github登陆账号的用户名。</h2><blockquote>
-<p>特别要注意仓库名称的格式，必须是以用户名开头。</p>
-</blockquote>
-<p><img src="/2022/11/29/mac_huan_jing_da_jian_ji_yu_hexo_de_ge_ren_bo_ke_zhi_nan/%E6%96%B0%E5%BB%BA%E4%BB%93%E5%BA%93.png" alt="新建仓库"></p>
-<h2 id="2-修改配置文件-config-yml。"><a href="#2-修改配置文件-config-yml。" class="headerlink" title="2. 修改配置文件_config.yml。"></a>2. 修改配置文件<code>_config.yml</code>。</h2><p>在<code>MyBlog</code>文件夹内找到该文件，打开文件找到如下代码进行修改。以下配置告诉hexo将来部署到什么平台以及文章和代码存放到哪个仓库，今后博客文章将会上传到该仓库。</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"># Deployment
-## Docs<span class="token operator">:</span> https<span class="token operator">:</span><span class="token operator">/</span><span class="token operator">/</span>hexo<span class="token punctuation">.</span>io<span class="token operator">/</span>docs<span class="token operator">/</span>one<span class="token operator">-</span>command<span class="token operator">-</span>deployment
-<span class="token literal-property property">deploy</span><span class="token operator">:</span>
-  <span class="token literal-property property">type</span><span class="token operator">:</span> git # 因为我们需要部署到git
-  <span class="token literal-property property">repo</span><span class="token operator">:</span> git@github<span class="token punctuation">.</span>com<span class="token operator">:</span>CoderKingXY<span class="token operator">/</span>coderkingxy<span class="token punctuation">.</span>github<span class="token punctuation">.</span>io<span class="token punctuation">.</span>git # 这里修改为你自己的仓库，后面介绍有关该仓库创建的要点
-  <span class="token literal-property property">branch</span><span class="token operator">:</span> # 分支名称，可不填写使用默认master分支
-  <span class="token literal-property property">message</span><span class="token operator">:</span> # 自定义提交信息，可不填写<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><img src="/2022/11/29/mac_huan_jing_da_jian_ji_yu_hexo_de_ge_ren_bo_ke_zhi_nan/%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE.png" alt="修改配置"></p>
-<h2 id="3-安装插件。"><a href="#3-安装插件。" class="headerlink" title="3. 安装插件。"></a>3. 安装插件。</h2><p>以上修改后的配置，是在插件的参与下生效的。</p>
 <ul>
-<li>执行命令： <code> npm install hexo-deployer-git --save</code>，安装插件；</li>
-<li>执行命令：<code>hexo d</code>或者<code>hexo deploy</code>（为了方便起见，下文统一使用前者）。如果你刚创建完仓库没多久，执行此命令可能会报错，稍等几分钟后执行即可。</li>
+<li>上标  $a^v$ ：<br>常用于表示集合中元素的不同可能取值。在许多统计学和信息理论的文献中，上标表示不同取值的习惯用法更常见。</li>
+<li>下标  $a_v$ ：<br>常用于表示多维数组或矩阵的索引。在计算机科学和工程中，使用下标来表示位置或索引更为常见。</li>
 </ul>
-<h2 id="4-预览博客"><a href="#4-预览博客" class="headerlink" title="4. 预览博客"></a>4. 预览博客</h2><p>浏览器输入<code>https://coderkingxy.github.io</code>即可访问到刚刚部署至github的博客首页。（记得将这里的<code>coderkingxy</code>替换为你自己的用户名）</p>
-<p><img src="/2022/11/29/mac_huan_jing_da_jian_ji_yu_hexo_de_ge_ren_bo_ke_zhi_nan/%E9%83%A8%E7%BD%B2%E6%88%90%E5%8A%9F.png" alt="部署成功"></p>
-<h1 id="四、新建博客并部署"><a href="#四、新建博客并部署" class="headerlink" title="四、新建博客并部署"></a>四、新建博客并部署</h1><blockquote>
-<p>至此，你已经成功将本地博客部署至<code>Github</code>，其他人可以通过<code>Github</code>提供的域名访问你的博客了。接下来会介绍如何从0开始新建博客，并部署。</p>
 </blockquote>
-<h2 id="1-使用命令hexo-new-post-算法基础-冒泡排序创建一篇名称为“算法基础-冒泡排序”的博客；"><a href="#1-使用命令hexo-new-post-算法基础-冒泡排序创建一篇名称为“算法基础-冒泡排序”的博客；" class="headerlink" title="1. 使用命令hexo new post 算法基础-冒泡排序创建一篇名称为“算法基础-冒泡排序”的博客；"></a>1. 使用命令<code>hexo new post 算法基础-冒泡排序</code>创建一篇名称为“算法基础-冒泡排序”的博客；</h2><p><img src="/2022/11/29/mac_huan_jing_da_jian_ji_yu_hexo_de_ge_ren_bo_ke_zhi_nan/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F.png" alt="创建博客"></p>
-<h2 id="2-生成博客，开启本地服务进行预览"><a href="#2-生成博客，开启本地服务进行预览" class="headerlink" title="2. 生成博客，开启本地服务进行预览"></a>2. 生成博客，开启本地服务进行预览</h2><ul>
-<li>执行命令<code>hexo g</code>或者<code>hexo generate</code>（下文使用前者）</li>
-<li>执行命令<code>hexo s</code>或者<code>hexo server</code>（下文使用前者）</li>
-</ul>
-<p><img src="/2022/11/29/mac_huan_jing_da_jian_ji_yu_hexo_de_ge_ren_bo_ke_zhi_nan/%E7%94%9F%E6%88%90%E5%8D%9A%E5%AE%A2.png" alt="生成博客"></p>
-<ul>
-<li>浏览器输入地址<code>http://localhost:4000/</code>进行预览，可以看到文章已经出现在首页。此时还未编写内容，稍后介绍。<br><img src="/2022/11/29/mac_huan_jing_da_jian_ji_yu_hexo_de_ge_ren_bo_ke_zhi_nan/%E6%96%B0%E5%BB%BA%E5%8D%9A%E5%AE%A2%E9%A2%84%E8%A7%88.png" alt="预览"></li>
-</ul>
-<h2 id="4-重新部署"><a href="#4-重新部署" class="headerlink" title="4. 重新部署"></a>4. 重新部署</h2><ul>
-<li>执行部署命令：<code>hexo d</code> ，几分钟后访问Github上的仓库域名查看。</li>
-</ul>
-<p><img src="/2022/11/29/mac_huan_jing_da_jian_ji_yu_hexo_de_ge_ren_bo_ke_zhi_nan/%E6%96%B0%E5%BB%BA%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2%E6%88%90%E5%8A%9F.png" alt="新建博客部署成功"></p>
-<h1 id="五、更换主题"><a href="#五、更换主题" class="headerlink" title="五、更换主题"></a>五、更换主题</h1><blockquote>
-<p>Hexo官方网站上有很多开源的<a target="_blank" rel="noopener" href="https://hexo.io/themes/">主题</a>，Github上也有，大家可以随意选择自己喜欢的主题。</p>
-</blockquote>
-<h2 id="1-找到你喜欢的主题，这里以next主题为例；"><a href="#1-找到你喜欢的主题，这里以next主题为例；" class="headerlink" title="1. 找到你喜欢的主题，这里以next主题为例；"></a>1. 找到你喜欢的主题，这里以next主题为例；</h2><ul>
-<li>执行命令: <code>git clone https://github.com/next-theme/hexo-theme-next.git themes/next</code>。这个命令的作用是在<code>themes</code>内新建一个文件夹<code>next</code>，将GitHub网站上托管的名为<code>hexo-theme-next</code>的仓库下载至<code>next</code>文件夹内，next是我们自己命名的；</li>
-<li>修改配置文件<code>_config.yml</code>里面的theme一项为next；</li>
-</ul>
-<p><img src="/2022/11/29/mac_huan_jing_da_jian_ji_yu_hexo_de_ge_ren_bo_ke_zhi_nan/%E4%BF%AE%E6%94%B9%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE.png" alt="修改主题"></p>
-<ul>
-<li>执行命令：<code>hexo g</code>生成博客；</li>
-<li>执行命令：<code>hexo s</code>开启服务，浏览区输入地址<code>http://localhost:4000/</code>即可预览；</li>
-</ul>
-<p><img src="/2022/11/29/mac_huan_jing_da_jian_ji_yu_hexo_de_ge_ren_bo_ke_zhi_nan/%E4%B8%BB%E9%A2%98%E6%9C%AC%E5%9C%B0%E9%A2%84%E8%A7%88.png" alt="修改后本地预览"></p>
-<ul>
-<li>如果你觉得该主题还满意，即可执行命令：<code>hexo d</code>进行部署了；</li>
-</ul>
-<h1 id="六、开始写作"><a href="#六、开始写作" class="headerlink" title="六、开始写作"></a>六、开始写作</h1><blockquote>
-<p>所有的准备工作都已经完成，下面简单介绍如何编辑我们的博客。以上文创建的“算法基础-冒泡排序”为例。</p>
-</blockquote>
-<ul>
-<li>停止本地服务：<code>ctrl + C</code>。非必要操作，可自己根据实际情况开启或者关闭；</li>
-<li>刚才创建的博客文档在<code>～Documents/MyBlog/source/_posts/算法基础-冒泡排序.md </code>，使用<a target="_blank" rel="noopener" href="https://markdown.com.cn/basic-syntax/">Markdown语法</a>编辑即可，当然你可以选择一款你喜欢的编辑器进行编辑，例如<a target="_blank" rel="noopener" href="https://code.visualstudio.com/">VSCode</a>或者<a target="_blank" rel="noopener" href="https://atom-china.org/t/topic/6848">Atom</a>等等；</li>
-<li>可以在<code>Front-matter</code>编辑文章相关的参数。Front-matter 是文件最上方以 — 分隔的区域，用于指定个别文件的变量。Front- matter是官网给取的一个名称，这里就不翻译过来了。</li>
-</ul>
-<p><img src="/2022/11/29/mac_huan_jing_da_jian_ji_yu_hexo_de_ge_ren_bo_ke_zhi_nan/%E5%8D%9A%E5%AE%A2%E7%BC%96%E8%BE%91%E7%A4%BA%E4%BE%8B.png" alt="编辑博客示例"></p>
-<p>编辑完之后，按照本文上面的部分进行生成博客、部署即可。更多详细内容可以参阅官方文档。</p>
-<hr>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ul>
-<li>先在本地调试成功</li>
-<li>服务端调试成功</li>
-<li>创建博客并部署</li>
-<li>写作</li>
-<li>修改主题</li>
-</ul>
-<blockquote>
-<p>参考文献：<br><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/commands#generate">https://hexo.io/zh-cn/docs/commands#generate</a></p>
-</blockquote>
+<p><strong>信息增益</strong><br>信息增益是度量在数据集上使用某个属性进行划分所带来的信息纯度增加的指标。信息增益告诉我们，在用某个属性进行划分后，数据集的纯度增加了多少。信息增益越高，说明这个属性越能有效的将数据集划分得更加纯净。因此，在构建决策树时，我们选择信息增益最大的属性作为划分标准，从而构建出最优的决策树。<br>$$<br>    Gain(D,a) = Ent(D) - \sum_{v=1}^{V} \frac{|D^v|}{D}Ent(D^v)<br>$$</p>
+<p><strong>ID3决策树：以信息增益为准则来选择划分属性的决策树</strong><br>$$<br>    a_* = \arg \max_{a \in A} Gain(D,a)<br>$$</p>
+<p><strong>C4.5决策树：以信息增益率为准则来选择划分属性的决策树</strong><br>信息增益准则有缺点，其对可能取值数目较多的属性有所偏好，例如在一个分类任务中，某个属性几乎为每个样本提供唯一的（如身份证号码）属性值，信息增益会偏向选择这个属性。<br>C4.5是ID3的改进版本，它通过引入信息增益率（Information Gain Ratio）来选择划分属性。信息增益率是信息增益的改进版本，它考虑了信息增益和条件熵的比值，从而更加平衡地选择划分属性。<br><strong>增益率</strong><br>$$<br>    Gain_Ratio(D,a) = \frac{Gain(D,a)}{IV(a)} \<br>    \text{其中,}<br>    IV(a) = - \sum_{v=1}^{V} \frac{|D^v|}{D} \log_2 \frac{|D^v|}{D}<br>$$<br>$IV(a)$称为属性$a$的“固有值”，a 的可能取值个数V越大，固有值越大。但是，增益率对可能取值数目较少的属性有所偏好。因此，C4.5并不是根据增益率最大的候选划分属性，而是先从候选划分属性中选择信息增益高于平均水平的属性，然后选择信息增益率最高的属性作为划分属性。  </p>
+<p><strong>CART决策树</strong><br>CART（Classification and Regression Trees），即分类回归树，是C4.5的改进版本，它使用“基尼指数”选择划分属性。</p>
+<p><strong>基尼值</strong><br>基尼值度量的是一个数据集的混杂度，具体来说就是从数据集中随机抽取两个样本，其类别标记不一致的概率。基尼值越小，数据集的混杂度越小，说明数据集的纯度越高。<br>$$<br>\begin{aligned}<br>    Gini(D) &amp;= \sum_{k=1}^{|y|} \sum_{k’ \neq k}p_kp_{k’} \<br>            &amp;= \sum_{k=1}^{|y|}p_k(1 - p_k) \<br>            &amp;= 1 - \sum_{k=1}^{|y|}p_k^2</p>
+<p>\end{aligned}<br>$$</p>
+<p>公式解释：对每个类别 $k$，计算该类别的样本比例 $p_k$ 与其他类别的样本比例 $p_{k’}$ 的乘积，然后对所有类别求和。  </p>
+<p>属性 $a$ 的基尼指数：<br>$$<br>    Gini_index(D,a) = \sum_{v=1}^{V} \frac{|D^v|}{D}Gini(D^v)<br>$$</p>
+<p>CART决策树选择基尼指数最小的属性作为最优划分属性：<br>$$<br>    a_* = \arg \min_{a \in A} Gini_index(D,a)<br>$$</p>
 
                 
             </div>
@@ -463,7 +395,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://CoderKingXY.github.io/2022/11/29/mac_huan_jing_da_jian_ji_yu_hexo_de_ge_ren_bo_ke_zhi_nan/">http://CoderKingXY.github.io/2022/11/29/mac_huan_jing_da_jian_ji_yu_hexo_de_ge_ren_bo_ke_zhi_nan/</a>
+                    <a href="http://CoderKingXY.github.io/2024/07/11/ml_4/">http://CoderKingXY.github.io/2024/07/11/ml_4/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -501,8 +433,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Hexo/">
-                                    <span class="chip bg-color">Hexo</span>
+                                <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">
+                                    <span class="chip bg-color">机器学习</span>
                                 </a>
                             
                         </div>
@@ -578,17 +510,18 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2024/07/05/ml_ji_ben_gai_nian/">
+                <a href="/2024/07/11/ml_4/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="机器学习基本概念">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="决策树">
                         
-                        <span class="card-title">机器学习基本概念</span>
+                        <span class="card-title">决策树</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -598,9 +531,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2024-07-05
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-07-11
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -613,6 +546,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -631,13 +565,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/11/28/suan_fa_ji_chu_mou_pao_pai_xu/">
+                <a href="/2024/07/10/ml_3/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="算法基础-冒泡排序">
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="线性判别分析LDA">
                         
-                        <span class="card-title">算法基础-冒泡排序</span>
+                        <span class="card-title">线性判别分析LDA</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -648,12 +582,16 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-11-28
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-07-10
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            王笑宇
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" class="post-category">
+                                    人工智能
+                                </a>
+                            
                             
                         </span>
                     </div>
@@ -661,8 +599,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E7%AE%97%E6%B3%95/">
-                        <span class="chip bg-color">算法</span>
+                    <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">
+                        <span class="chip bg-color">机器学习</span>
                     </a>
                     
                 </div>

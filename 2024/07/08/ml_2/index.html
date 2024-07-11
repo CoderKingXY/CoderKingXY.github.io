@@ -298,7 +298,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2024-07-08
+                    2024-07-10
                 </div>
                 
 
@@ -343,20 +343,20 @@
 <li>优化：梯度下降法、牛顿法</li>
 </ol>
 </blockquote>
-<p>二分类任务的输出标记：$y \in &lt;!–swig￼0–&gt;}}<br>\newcommand{\ebxi}{e^{\beta^T\hat{\mathbf{x}}_i}}<br>$$</p>
+<p>二分类任务的输出标记：$y \in &lt;!–swig￼0–&gt;}}<br>\newcommand{\ebxi}{e^{\beta^T\hat{\bm{x}}_i}}<br>$$</p>
 <p>$$<br>    y = \frac{1}{1 + e^{-z}}<br>$$</p>
 <p><img src="/2024/07/08/ml_2/geogebra-export.png" alt="图：对数几率函数"></p>
 <p>这个函数的值刚好在 $(0,1)$ 之间，且 $x = 0$ 时的值是0.5。</p>
 <p>$$<br>    \ln \left( \frac{y}{1 - y} \right) = \wx<br>$$</p>
-<p>离散型随机变量 $y \in {0,1}$ 取值为 $1$ 和 $0$ 的概率分别建模为：<br>$$<br>\begin{align}<br>    p(y = 1 | \mathbf{x}) &amp;= \frac{1}{1 + e^{-(\wx)}} = \frac{e^{\wx}}{1+e^{\wx}} \<br>    p(y = 0 | \mathbf{x}) &amp;= 1 - p(y = 1 | \mathbf{x}) = \frac{1}{1+e^{\wx}}<br>\end{align}<br>$$</p>
-<p>为了便于分析，令 $\beta = (\mathbf{w};b), \hat{\mathbf{x}} = (\mathbf{x};1)$，则上面的式子可以写为：</p>
-<p>$$<br>\begin{align}<br>    p(y=1|\hat{\mathbf{x}};\beta) &amp;= \frac{\ebx}{1+\ebx} = p_1(\hat{\mathbf{x}};\beta) \<br>    p(y=0|\hat{\mathbf{x}};\beta) &amp;= \frac{1}{1+\ebx} = p_0(\hat{\mathbf{x}};\beta) \<br>\end{align}<br>$$</p>
-<p>使用“极大似然估计”来估计 $\mathbf{w}$ 和 $b$。那么由以上概率推导出随机变量 $y \in {0,1}$ 的概率质量函数为：<br>$$<br>    p(y|\hat{\mathbf{x}};\beta) = y \cdot p_1(\hat{\mathbf{x}};\beta) + (1-y) \cdot p_0(\hat{\mathbf{x}};\beta) \<br>    或 \<br>    p(y|\hat{\mathbf{x}};\beta) = [p_1(\hat{\mathbf{x}};\beta)]^y \cdot [p_0(\hat{\mathbf{x}};\beta)]^{1-y}<br>$$</p>
-<p>似然函数和对数似然函数：<br>$$<br>\begin{align}<br>    L(\beta) &amp;= \prod_{i=1}^{m} p(y_i|\hat{\mathbf{x}}<em>i;\beta) \<br>    \ell(\bm{\beta}) &amp;= \ln L(\beta) = \sum</em>{i=1}^{m} \ln p(y_i|\hat{\mathbf{x}}<em>i;\beta) \<br>    \ell(\bm{\beta}) &amp;= \sum</em>{i=1}^{m}\ln(y_ip_1(\hat{\mathbf{x}}_i;\beta) + (1-y_i)p_0(\hat{\mathbf{x}}_i;\beta))<br>\end{align}<br>$$</p>
-<p>因为：<br>$$<br>\begin{align}<br>    p_1(\hat{\mathbf{x}_i};\beta) = \frac{\ebxi}{1+\ebxi} \<br>    p_0(\hat{\mathbf{x}_i};\beta) = \frac{1}{1+\ebxi}<br>\end{align}<br>$$</p>
+<p>离散型随机变量 $y \in {0,1}$ 取值为 $1$ 和 $0$ 的概率分别建模为：<br>$$<br>\begin{align}<br>    p(y = 1 | \bm{x}) &amp;= \frac{1}{1 + e^{-(\wx)}} = \frac{e^{\wx}}{1+e^{\wx}} \<br>    p(y = 0 | \bm{x}) &amp;= 1 - p(y = 1 | \bm{x}) = \frac{1}{1+e^{\wx}}<br>\end{align}<br>$$</p>
+<p>为了便于分析，令 $\beta = (\bm{w};b), \hat{\bm{x}} = (\bm{x};1)$，则上面的式子可以写为：</p>
+<p>$$<br>\begin{align}<br>    p(y=1|\hat{\bm{x}};\beta) &amp;= \frac{\ebx}{1+\ebx} = p_1(\hat{\bm{x}};\beta) \<br>    p(y=0|\hat{\bm{x}};\beta) &amp;= \frac{1}{1+\ebx} = p_0(\hat{\bm{x}};\beta) \<br>\end{align}<br>$$</p>
+<p>使用“极大似然估计”来估计 $\bm{w}$ 和 $b$。那么由以上概率推导出随机变量 $y \in {0,1}$ 的概率质量函数为：<br>$$<br>    p(y|\hat{\bm{x}};\beta) = y \cdot p_1(\hat{\bm{x}};\beta) + (1-y) \cdot p_0(\hat{\bm{x}};\beta) \<br>    或 \<br>    p(y|\hat{\bm{x}};\beta) = [p_1(\hat{\bm{x}};\beta)]^y \cdot [p_0(\hat{\bm{x}};\beta)]^{1-y}<br>$$</p>
+<p>似然函数和对数似然函数：<br>$$<br>\begin{align}<br>    L(\beta) &amp;= \prod_{i=1}^{m} p(y_i|\hat{\bm{x}}<em>i;\beta) \<br>    \ell(\bm{\beta}) &amp;= \ln L(\beta) = \sum</em>{i=1}^{m} \ln p(y_i|\hat{\bm{x}}<em>i;\beta) \<br>    \ell(\bm{\beta}) &amp;= \sum</em>{i=1}^{m}\ln(y_ip_1(\hat{\bm{x}}_i;\beta) + (1-y_i)p_0(\hat{\bm{x}}_i;\beta))<br>\end{align}<br>$$</p>
+<p>因为：<br>$$<br>\begin{align}<br>    p_1(\hat{\bm{x}_i};\beta) = \frac{\ebxi}{1+\ebxi} \<br>    p_0(\hat{\bm{x}_i};\beta) = \frac{1}{1+\ebxi}<br>\end{align}<br>$$</p>
 <p>所以：<br>$$<br>\begin{align}<br>    \ell(\bm{\beta})<br>        &amp;= \sum_{i=1}^{m}\ln \left( \frac{y_i\ebxi}{1+\ebxi} + \frac{1-y_i}{1+\ebxi} \right) \<br>        &amp;= \sum_{i=1}^{m}\ln \left( \frac{y_i\ebxi + 1 - y_i}{1+\ebxi} \right) \<br>        &amp;= \sum_{i=1}^{m}\left( \ln \left( y_i\ebxi + 1 - y_i \right) - \ln \left( 1+\ebxi \right) \right)\<br>\end{align}<br>$$</p>
-<p>因为 $ y_i \in {0,1} $，所以：<br>$$<br>\begin{align}<br>    \ell(\beta) &amp;=<br>    \begin{cases}<br>        \sum_{i=1}^{m} \left( - \ln \left( 1+\ebxi \right) \right), &amp; y_i = 0 \<br>        \sum_{i=1}^{m} \left( \beta^T\hat{\mathbf{x}_i} - \ln\left( 1+\ebxi \right) \right), &amp; y_i = 1 \<br>    \end{cases} \</p>
-<pre><code>\ell(\beta) &amp;= \sum_{i=1}^{m}\left( y_i\beta^T\hat{\mathbf{x}_i} - \ln\left( 1+\ebxi \right) \right) \\
+<p>因为 $ y_i \in {0,1} $，所以：<br>$$<br>\begin{align}<br>    \ell(\beta) &amp;=<br>    \begin{cases}<br>        \sum_{i=1}^{m} \left( - \ln \left( 1+\ebxi \right) \right), &amp; y_i = 0 \<br>        \sum_{i=1}^{m} \left( \beta^T\hat{\bm{x}_i} - \ln\left( 1+\ebxi \right) \right), &amp; y_i = 1 \<br>    \end{cases} \</p>
+<pre><code>\ell(\beta) &amp;= \sum_{i=1}^{m}\left( y_i\beta^T\hat{\bm{x}_i} - \ln\left( 1+\ebxi \right) \right) \\
 </code></pre>
 <p>\end{align}<br>$$</p>
 <p>因为损失函数通常是以最小化为优化目标，因此可以将最大化 $\ell(\beta)$ 转换为最小化 $\ell(\beta)$的相反数 $-\ell(\beta)$。</p>
@@ -771,7 +771,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">5.6k</span>
+                        class="white-color">7.1k</span>
             
             
             
