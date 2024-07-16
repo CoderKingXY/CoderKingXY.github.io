@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>神经网络</title>
+      <link href="/2024/07/12/ml_5/"/>
+      <url>/2024/07/12/ml_5/</url>
+      
+        <content type="html"><![CDATA[<h1 id="M-P神经元"><a href="#M-P神经元" class="headerlink" title="M-P神经元"></a>M-P神经元</h1><blockquote><p>M-P神经元是这样一个模型：接受n个输入，每个输入对应一个权重，把这些输入乘以权重加起来，然后和自身的一个特有阈值 $\theta$ 进行比较，最后经过激活函数处理得到输出。</p></blockquote><h2 id="构成"><a href="#构成" class="headerlink" title="构成"></a>构成</h2><ul><li>输入数据</li><li>权重</li><li>加权求和</li><li>激活函数</li></ul><h2 id="数学表达式"><a href="#数学表达式" class="headerlink" title="数学表达式"></a>数学表达式</h2><p>$$<br>    y = f(\sum_{i=1}^{n}w_ix_i - \theta) = f(\bm{w}^T\bm{x} + b)<br>$$</p><h2 id="激活函数"><a href="#激活函数" class="headerlink" title="激活函数"></a>激活函数</h2><p>一般使用sigmoid函数作为激活函数。</p><h1 id="感知机模型"><a href="#感知机模型" class="headerlink" title="感知机模型"></a>感知机模型</h1><p>感知机是由两层神经元组成的，输入层接受信号后传递给输出层，输出层是M-P神经元。感知机能够实现逻辑与、或、非运算。感知机只有一层功能神经元，也就是输出层的神经元。</p><p><strong>激活函数</strong>  使用sgn阶跃函数的神经元</p><p>$$<br>y = \text{sgn}(\bm{w}^\top \bm{x} - \theta) =<br>\begin{cases}<br>1, &amp; \bm{w}^\top \bm{x} - \theta \geq 0 \<br>0, &amp; \bm{w}^\top \bm{x} - \theta &lt; 0<br>\end{cases}<br>$$</p><p>感知机模型只能解决线性可分的数据。更加复杂的问题需要多层感知机。</p><h1 id="神经网络"><a href="#神经网络" class="headerlink" title="神经网络"></a>神经网络</h1><p>如果把感知机模型看做是M-P神经元，那么神经网络就是由多个感知机模型组成的。<br>多层前馈网络：每层神经元之间互不相连，相邻两层之间的神经元全互联，不存在跨层链接。</p><p><strong>BP算法</strong><br>假设多层前馈网络中的激活函数全为sigmoid函数，且当前要完成的任务为一个多输出回归任务，那么损失函数可以用均方误差。对于某个训练样本 $(x_k, y_k)$，其中 $y_k = (y_1^{k}, y_2^{k}, \cdots, y_l^{k})$，假设其多层前馈网络的输出为 $\hat{y}_k = (\hat{y}_1^{k}, \hat{y}_2^{k}, \cdots, \hat{y}<em>l^{k})$，则该单个样本的均方误差为：<br>$$<br>    E_k = \frac{1}{2}\sum</em>{j=1}^{l}(\hat{y}_j^{k} - \hat{y}_j^{k})^2<br>$$</p><p>BP算法是基于随机梯度下降的参数更新算法：<br>$$<br>\begin{aligned}<br>    \bm{w} \leftarrow \bm{w} + \Delta \bm{w} \<br>    \Delta \bm{w} = -\eta \nabla_{\bm{w}} E \<br>\end{aligned}<br>$$</p><p>问题转化为求解梯度向量 $\nabla_{\bm{w}} E$。</p><p>以下推导输入层第i个神经元与隐层第h个神经元之间的连接权。</p><p><img src="/2024/07/12/ml_5/image.png" alt="图:BP网络算法及相关符号示意图"></p><p>$$<br>\begin{aligned}<br>    \frac{\partial E}{\partial v_{ih}} &amp;= \sum_{i=1}^{l} \frac{\partial E_k}{\partial \hat{y}<em>i^k} \cdot \frac{\partial \hat{y}<em>i^k}{\partial \beta_j} \cdot \frac{\partial \beta_j}{\partial b</em>{h}} \cdot \frac{\partial b</em>{h}}{\partial \alpha_{h}} \cdot \frac{\partial \alpha_{h}}{\partial v_{ih}} \<br>    &amp;= \sum_{i=1}^{l} \frac{\partial E_k}{\partial \hat{y}<em>i^k} \cdot \frac{\partial \hat{y}<em>i^k}{\partial \beta_j} \cdot \frac{\partial \beta_j}{\partial b</em>{h}} \cdot \frac{\partial b</em>{h}}{\partial \alpha_{h}} \cdot x_i \<br>    &amp;= \sum_{i=1}^{l} \frac{\partial E_k}{\partial \hat{y}<em>i^k} \cdot \frac{\partial \hat{y}<em>i^k}{\partial \beta_j} \cdot \frac{\partial \beta_j}{\partial b</em>{h}} \cdot f’(\alpha_h - \gamma_h) \cdot x_i   \<br>    &amp;= \sum</em>{i=1}^{l} \frac{\partial E_k}{\partial \hat{y}<em>i^k} \cdot \frac{\partial \hat{y}<em>i^k}{\partial \beta_j} \cdot w</em>{hj} \cdot f’(\alpha_h - \gamma_h) \cdot x_i   \<br>    &amp;= \sum</em>{i=1}^{l} (-g_j) \cdot w_{hj} \cdot f’(\alpha_h - \gamma_h) \cdot x_i   \<br>    &amp;= -f’(\alpha_h - \gamma_h) \cdot \sum_{j=1}^{l} g_j \cdot w_{hj} \cdot x_i \<br>    &amp;= -b_h(1 - b_h) \cdot \sum_{j=1}^{l} g_j \cdot w_{hj} \cdot x_i \<br>    &amp;= -e_h \cdot x_i \<br>\end{aligned}<br>$$</p><p>因此：<br>$$<br>    \Delta{v_{ih}} = - \eta \frac{\partial E_k}{\partial v_{ih}} = \eta e_h \cdot x_i<br>$$</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 人工智能 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 机器学习 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>决策树</title>
       <link href="/2024/07/11/ml_4/"/>
       <url>/2024/07/11/ml_4/</url>
